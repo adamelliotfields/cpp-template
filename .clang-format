@@ -1,0 +1,9 @@
+BasedOnStyle: Google
+ColumnLimit: 80
+AlignAfterOpenBracket: BlockIndent
+ContinuationIndentWidth: 2
+BreakAfterReturnType: None
+PenaltyReturnTypeOnItsOwnLine: 300
+BinPackParameters: OnePerLine
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortFunctionsOnASingleLine: Empty

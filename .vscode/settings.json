@@ -1,0 +1,19 @@
+{
+  "editor.rulers": [80],
+
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "C_Cpp.clang_format_path": "/usr/lib/llvm-22/bin/clang-format",
+  "C_Cpp.codeAnalysis.clangTidy.path": "/usr/lib/llvm-22/bin/clang-tidy",
+  "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+
+  "clangd.path": "/usr/lib/llvm-22/bin/clangd",
+  "clangd.arguments": [
+    "--query-driver=/usr/lib/llvm-22/bin/clang++"
+  ],
+
+  "[cpp]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.codeActionsOnSave": { "source.fixAll": "explicit" }
+  }
+}

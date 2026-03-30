@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "llvm-vs-code-extensions.vscode-clangd",
+    "ms-vscode.cpptools",
+    "twxs.cmake"
+  ],
+  "unwantedRecommendations": ["ms-vscode.cmake-tools"]
+}

@@ -1,0 +1,15 @@
+HeaderFilterRegex: '(include|src)/.*'
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -bugprone-throwing-static-initialization,
+  modernize-*,
+  performance-*,
+  readability-*,
+  -readability-braces-around-statements,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -readability-make-member-function-const,
+  -readability-static-accessed-through-instance
