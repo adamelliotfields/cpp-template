@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CMake: configure (debug)",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--preset", "debug"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "CMake: build (debug)",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "--preset", "debug"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["CMake: configure (debug)"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "CMake: test (debug)",
+      "type": "shell",
+      "command": "ctest",
+      "args": ["--preset", "debug"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": ["CMake: build (debug)"],
+      "group": "test"
+    }
+  ]
+}
