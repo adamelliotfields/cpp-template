@@ -5,7 +5,7 @@
       "name": "Debug convertunit",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/convertunit",
+      "program": "${workspaceFolder}/build/debug/convertunit",
       "args": ["1", "--from", "km", "--to", "m"],
       "cwd": "${workspaceFolder}",
       "stopAtEntry": false,
