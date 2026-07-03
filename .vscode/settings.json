@@ -1,6 +1,13 @@
 {
   "editor.rulers": [80],
 
+  "files.exclude": {
+    "build/**": true
+  },
+  "files.watcherExclude": {
+    "build/**": true
+  },
+
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.clang_format_path": "/usr/lib/llvm-22/bin/clang-format",
   "C_Cpp.codeAnalysis.clangTidy.path": "/usr/lib/llvm-22/bin/clang-tidy",
