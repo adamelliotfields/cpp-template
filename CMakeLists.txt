@@ -51,9 +51,15 @@ list(SORT project_lint_files)
 add_library(convertunit_lib INTERFACE)
 target_include_directories(convertunit_lib INTERFACE include)
 
+# Warnings (propagates compile flags to targets that link it)
+add_library(project_warnings INTERFACE)
+# Don't use -Wpedantic with Catch2
+target_compile_options(project_warnings INTERFACE -Wall -Wextra -Wconversion)
+
 # Executable
 add_executable(convertunit src/main.cpp)
-target_link_libraries(convertunit PRIVATE convertunit_lib CLI11::CLI11)
+# Apply warnings to local targets that compile sources, not the header-only library
+target_link_libraries(convertunit PRIVATE convertunit_lib project_warnings CLI11::CLI11)
 
 # Documentation
 find_package(Doxygen)
@@ -99,18 +105,23 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/CLIUtils/CLI11.git
     GIT_TAG v2.6.2
 )
-FetchContent_Declare(
-    Catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG v3.13.0
-)
-FetchContent_MakeAvailable(CLI11 Catch2)
+FetchContent_MakeAvailable(CLI11)
 
-add_executable(convertunit_test test/convertunit_test.cpp)
-target_link_libraries(convertunit_test PRIVATE convertunit_lib Catch2::Catch2WithMain)
-
+# Testing
 include(CTest)
-list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+# Pass -DBUILD_TESTING=OFF to skip
+if(BUILD_TESTING)
+    FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG v3.15.1
+    )
+    FetchContent_MakeAvailable(Catch2)
 
-include(Catch)
-catch_discover_tests(convertunit_test)
+    add_executable(convertunit_test test/convertunit_test.cpp)
+    target_link_libraries(convertunit_test PRIVATE convertunit_lib Catch2::Catch2WithMain project_warnings)
+
+    list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+    include(Catch)
+    catch_discover_tests(convertunit_test)
+endif()
